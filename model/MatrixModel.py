@@ -67,5 +67,12 @@ class MatrixModel:
             raise ValueError('Value of modulus must be positive')
         self.__modulus = modulus
 
+    def is_full(self) -> bool:
+        for row in self.__matrix:
+            for cell in row:
+                if cell == '':
+                    return False
+        return True
+
     def get_modulus(self) -> int:
         return self.__modulus

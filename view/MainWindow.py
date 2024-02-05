@@ -1,4 +1,5 @@
 import tkinter
+import tkinter.messagebox as messagebox
 from calculator import RealMatrixCalculator, MatrixCalculator, ComplexMatrixCalculator, FiniteMatrixCalculator
 from controller import MatrixController
 from .MatrixFrame import MatrixFrame
@@ -71,7 +72,12 @@ class MainWindow(tkinter.Tk):
         self.__calculate_button = tkinter.Button(self, text='Calculate', command=self.__on_calculate_clicked)
         self.__calculate_button.pack()
 
-    def __validate_mat_size_range(self, str_in):
+        self.__error_not_full = messagebox.Message(title='Matrix is not full', parent=self,
+                                                   icon=messagebox.ERROR, type=messagebox.OK,
+                                                   message='Please fill all cells')
+
+    @classmethod
+    def __validate_mat_size_range(cls, str_in):
         if str_in == '':
             return True
         else:
@@ -83,7 +89,8 @@ class MainWindow(tkinter.Tk):
                 return False
             return True
 
-    def __validate_modulus_range(self, str_in):
+    @classmethod
+    def __validate_modulus_range(cls, str_in):
         if str_in == '':
             return True
         else:
@@ -112,7 +119,11 @@ class MainWindow(tkinter.Tk):
             self.__matrix_calculator = self.__finite_matrix_calculator
 
     def __on_calculate_clicked(self):
-        matrix = self.__matrix_calculator.calculate()
-        LaTeXViewer(self, latex(matrix))
+        if self.__controller.is_full():
+            matrix = self.__matrix_calculator.calculate()
+            LaTeXViewer(self, latex(matrix))
+        else:
+            self.__error_not_full.show()
+
 
 

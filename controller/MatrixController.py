@@ -66,3 +66,6 @@ class MatrixController:
     def modulus_changed_observable(self) -> Observable:
         return self.__modulus_changed
 
+    def is_full(self) -> bool:
+        return self.__model.is_full()
+
