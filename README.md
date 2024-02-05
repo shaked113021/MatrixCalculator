@@ -48,6 +48,10 @@ debian:
 sudo apt install xclip
 ```
 
+please see:
+https://pyperclip.readthedocs.io/en/latest/#not-implemented-error
+for more info
+
 ## Running the project
 if you are using virtual environment, please activate it first. then run:
 ```commandline
