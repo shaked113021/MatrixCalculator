@@ -76,8 +76,8 @@ class MainWindow(tkinter.Tk):
                                                    icon=messagebox.ERROR, type=messagebox.OK,
                                                    message='Please fill all cells')
 
-    @classmethod
-    def __validate_mat_size_range(cls, str_in):
+    @staticmethod
+    def __validate_mat_size_range(str_in):
         if str_in == '':
             return True
         else:
@@ -89,8 +89,8 @@ class MainWindow(tkinter.Tk):
                 return False
             return True
 
-    @classmethod
-    def __validate_modulus_range(cls, str_in):
+    @staticmethod
+    def __validate_modulus_range(str_in):
         if str_in == '':
             return True
         else:
